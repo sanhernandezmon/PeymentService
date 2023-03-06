@@ -29,6 +29,9 @@ func handleRequests() {
 }
 
 func main() {
+	println("service running or port 10001")
+	//If table has been already created comment line above
+	repository.CreateTable()
 	handleRequests()
 	repository.RecieveSQSMessages().On(consumer.EventReceiveMessage, consumer.OnReceiveMessage(func(messages []*sqs.Message) {
 		for _, s := range messages {
