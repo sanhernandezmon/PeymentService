@@ -2,15 +2,13 @@ package repository
 
 import (
 	"PeymentService/domain"
-	"PeymentService/mappers"
 	"encoding/json"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	consumer "github.com/haijianyang/go-sqs-consumer"
 )
 
-func SavePaymentToDynamoDB(request domain.CreatePaymentRequest) (string, error) {
-	var payment = mappers.MapPaymentRequestToPayment(request)
+func SavePaymentToDynamoDB(payment domain.Payment) (string, error) {
 	err := AddElement(payment)
 	if err != nil {
 		panic(err)

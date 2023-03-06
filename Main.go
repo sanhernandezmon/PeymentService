@@ -36,7 +36,7 @@ func main() {
 			json.Unmarshal([]byte(*s.Body), &paymentRequest)
 			payment := mappers.MapPaymentRequestToPayment(paymentRequest)
 			repository.SendPaymentSQSMessage(payment)
-			repository.SendPaymentSQSMessage(payment)
+			repository.SavePaymentToDynamoDB(payment)
 		}
 	}))
 }
